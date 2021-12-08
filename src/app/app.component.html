@@ -1,0 +1,83 @@
+<h1>Smite Damage Calculator</h1>
+
+<form [formGroup]="smiteForm">
+  <div>
+    <label for="gDamage">Grief Damage </label>
+    <div>
+      <input id="gDamage" type="number" formControlName="gDamage" />
+    </div>
+  </div>
+  <br />
+  <div>
+    <label for="hsMin">Holy Shield Min Damage </label>
+    <div>
+      <input id="hsMin" type="number" formControlName="hsMin" />
+    </div>
+  </div>
+  <br />
+  <div>
+    <label for="hsMax">Holy Shield Max Damage </label>
+    <div>
+      <input id="hsMax" type="number" formControlName="hsMax" />
+    </div>
+  </div>
+
+  <br />
+  <div>
+    <label for="sMin">Smite Min Damage </label>
+    <div>
+      <input id="last-name" type="number" formControlName="sMin" />
+    </div>
+  </div>
+  <br />
+  <div>
+    <label for="sMax">Smite Max Damage </label>
+    <div>
+      <input id="sMax" type="number" formControlName="sMax" />
+    </div>
+  </div>
+  <br />
+  <div>
+    <label for="strEd">Strength </label>
+    <div>
+      <input id="strEd" type="number" formControlName="strEd" />
+    </div>
+  </div>
+
+  <br />
+  <div>
+    <label for="smiteEd">Smite Enhanced Damage </label>
+    <div>
+      <input id="smiteEd" type="number" formControlName="smiteEd" />
+    </div>
+  </div>
+  <br />
+  <div>
+    <label for="fanaEd">Fanatacism Enhanced Damage </label>
+    <div>
+      <input id="fanaEd" type="number" formControlName="fanaEd" />
+    </div>
+  </div>
+  <br />
+  <div>
+    <label for="offEd">Offhand Enhanced Damage </label>
+    <div>
+      <input id="offEd" type="number" formControlName="offEd" />
+    </div>
+  </div>
+  <br />
+  <div>
+    <h2 id="aveDamage">Average Smite Damage</h2>
+    <div>{{ smiteDamage.average }}</div>
+  </div>
+
+  <div>
+    <h3 id="minDamage">Min Smite Damage</h3>
+    <div>{{ smiteDamage.min }}</div>
+  </div>
+
+  <div>
+    <h3 id="Max Damage">Max Smite Damage</h3>
+    <div>{{ smiteDamage.max }}</div>
+  </div>
+</form>
