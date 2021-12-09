@@ -13,9 +13,11 @@ export class AppComponent implements OnInit {
     average: 0,
   };
 
+  actualSmitePvpDamage = 0;
+
   averageDamage = 0;
   smiteForm: FormGroup;
-  gDamage = 399;
+  gDamage = 400;
   hsMin = 105;
   hsMax = 108;
   smiteEd = 480;
@@ -25,7 +27,17 @@ export class AppComponent implements OnInit {
   sMin = 46;
   sMax = 46;
 
+  pvpDamageForm: FormGroup;
+  damageReduction = 50;
+  actualPvpDamage = 0;
+  damage = 0;
+
   ngOnInit() {
+    this.pvpDamageForm = new FormGroup({
+      damage: new FormControl(this.damage),
+      damageReduction: new FormControl(this.damage),
+    });
+
     this.smiteForm = new FormGroup({
       gDamage: new FormControl(this.gDamage),
       hsMin: new FormControl(this.hsMin),
@@ -50,6 +62,11 @@ export class AppComponent implements OnInit {
       this.offEd
     );
 
+    this.actualSmitePvpDamage = this.calcPvpDamage(
+      this.smiteDamage.average,
+      50
+    );
+
     this.smiteForm.valueChanges.subscribe((form) => {
       this.smiteDamage = this.calcSmiteDamage(
         form.gDamage,
@@ -61,6 +78,17 @@ export class AppComponent implements OnInit {
         form.strEd,
         form.fanaEd,
         form.offEd
+      );
+      this.actualSmitePvpDamage = this.calcPvpDamage(
+        this.smiteDamage.average,
+        50
+      );
+    });
+
+    this.pvpDamageForm.valueChanges.subscribe((form) => {
+      this.actualPvpDamage = this.calcPvpDamage(
+        form.damage,
+        form.damageReduction
       );
     });
   }
@@ -76,6 +104,7 @@ export class AppComponent implements OnInit {
     fanaEd,
     offEd
   ) {
+    //(Shield Base + Holy Shield bonus + Grief bonus) * (1 + Smite %ED bonus + STR %ED bonus + Fanaticism %ED bonus + off-weapon %ED bonus) = Total damage
     let min =
       (sMin + hsMin + gDamage) * (1 + (smiteEd + strEd + fanaEd + offEd) / 100);
     let max =
@@ -85,5 +114,12 @@ export class AppComponent implements OnInit {
       max: max,
       average: (min + max) / 2,
     };
+  }
+
+  calcPvpDamage(damage, damageReduction) {
+    if (damageReduction < 1) {
+      return damage / 6;
+    }
+    return (damage / 6) * (damageReduction / 100);
   }
 }

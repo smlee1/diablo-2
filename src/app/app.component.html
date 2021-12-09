@@ -67,17 +67,61 @@
   </div>
   <br />
   <div>
-    <h2 id="aveDamage">Average Smite Damage</h2>
-    <div>{{ smiteDamage.average }}</div>
+    <label for="minDamage" style="font-weight: bold">Min Smite Damage: </label>
+    <span id="minDamage">{{ smiteDamage.min }}</span>
   </div>
 
   <div>
-    <h3 id="minDamage">Min Smite Damage</h3>
-    <div>{{ smiteDamage.min }}</div>
+    <label for="maxDamage" style="font-weight: bold">Max Smite Damage: </label>
+    <span id="maxDamage">{{ smiteDamage.max }}</span>
   </div>
 
   <div>
-    <h3 id="Max Damage">Max Smite Damage</h3>
-    <div>{{ smiteDamage.max }}</div>
+    <label for="aveDamage" style="font-weight: bold"
+      >Average Smite Damage:
+    </label>
+    <span id="aveDamage" style="font-weight: bold; color: blue">{{
+      smiteDamage.average
+    }}</span>
+  </div>
+
+  <div>
+    <label for="actualSmiteDamage" style="font-weight: bold"
+      >Actual Smite PVP Damage (50 Damage Reduction):
+    </label>
+    <span id="actualSmiteDamage" style="font-weight: bold; color: red">{{
+      actualSmitePvpDamage
+    }}</span>
   </div>
 </form>
+
+<div style="padding-top: 80px">
+  <h1>Damage Reduction Calculator</h1>
+  <form [formGroup]="pvpDamageForm">
+    <div>
+      <label for="damage">Damage</label>
+      <div>
+        <input id="damage" type="number" formControlName="damage" />
+      </div>
+    </div>
+    <br />
+    <div>
+      <label for="damageReduction">Damage Reduction </label>
+      <div>
+        <input
+          id="damageReduction"
+          type="number"
+          formControlName="damageReduction"
+        />
+      </div>
+    </div>
+    <div style="padding-top: 20px">
+      <label for="actualPvpDamage" style="font-weight: bold"
+        >Actual PVP Damage:
+      </label>
+      <span id="actualPvpDamage" style="font-weight: bold; color: green">{{
+        actualPvpDamage
+      }}</span>
+    </div>
+  </form>
+</div>
