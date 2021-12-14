@@ -120,6 +120,7 @@ export class AppComponent implements OnInit {
     if (damageReduction < 1) {
       return damage / 6;
     }
-    return (damage / 6) * (damageReduction / 100);
+    let damageReduced = (damage / 6) * (damageReduction / 100);
+    return damage / 6 - damageReduced;
   }
 }
